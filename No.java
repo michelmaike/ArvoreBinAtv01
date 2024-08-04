@@ -90,30 +90,30 @@ class ArvoreBinaria{
     }
 
     private boolean pesquisarNo(No no, int valor){
-        if (no == null){
+        if(no == null){
             return false;
         } else if(valor == no.obterValor()){
             return true;
         } else if(valor < no.obterValor()){
             return pesquisarNo(no.obterEsquerda(), valor);
-        } else {
+        } else{
             return pesquisarNo(no.obterDireita(), valor);
         }
     }
 
-    public void remover(int valor) {
+    public void remover(int valor){
         this.raiz = removerNo(this.raiz, valor);
     }
 
-    private No removerNo(No no, int valor) {
-        if (no == null) {
+    private No removerNo(No no, int valor){
+        if(no == null){
             return no;
         }
-        if (valor< no.obterValor()){
+        if(valor< no.obterValor()){
             no.definirEsquerda(removerNo(no.obterEsquerda(), valor));
-        } else if (valor > no.obterValor()) {
+        }else if(valor > no.obterValor()) {
             no.definirDireita(removerNo(no.obterDireita(), valor));
-        } else {
+        } else{
             if (no.obterEsquerda() == null) {
                 No temp = no.obterDireita();
                 no = null;
@@ -129,7 +129,7 @@ class ArvoreBinaria{
         }
         return no;
     }
-    private No minimoValorNo(No no) {
+    private No minimoValorNo(No no){
         No atual = no;
         while (atual.obterEsquerda() != null) {
             atual = atual.obterEsquerda();
@@ -137,27 +137,27 @@ class ArvoreBinaria{
         return atual;
     }
 
-    public void imprimirEmOrdem() {
+    public void imprimirEmOrdem(){
         imprimirEmOrdemNo(this.raiz);
         System.out.println();
     }
 
-    private void imprimirEmOrdemNo(No no) {
-        if (no != null) {
+    private void imprimirEmOrdemNo(No no){
+        if(no != null) {
             imprimirEmOrdemNo(no.obterEsquerda());
             System.out.print(no.obterValor()+" ");
             imprimirEmOrdemNo(no.obterDireita());
         }
     }
     public void imprimirPreOrdem() {
-        if (this.raiz != null) {
+        if(this.raiz != null) {
             this.raiz.imprimirPreOrdem();
             System.out.println();
         }
     }
 
     public void imprimirPosOrdem() {
-        if (this.raiz != null) {
+        if(this.raiz != null) {
             this.raiz.imprimirPosOrdem();
             System.out.println();
         }
@@ -165,21 +165,21 @@ class ArvoreBinaria{
 
    
     public void imprimirEmNivel() {
-        if (this.raiz == null) {
+        if(this.raiz == null) {
             return;
         }
 
         Queue<No> fila = new LinkedList<>();
         fila.add(this.raiz);
 
-        while (!fila.isEmpty()){
+        while(!fila.isEmpty()){
             No noAtual = fila.remove();
             System.out.print(noAtual.obterValor()+" ");
 
-            if (noAtual.obterEsquerda() != null){
+            if(noAtual.obterEsquerda() !=null){
                 fila.add(noAtual.obterEsquerda());
             }
-            if (noAtual.obterDireita() != null){
+            if(noAtual.obterDireita() != null){
                 fila.add(noAtual.obterDireita());
             }
         }
